@@ -2,28 +2,19 @@
   "name": "prop-types-exact",
   "version": "1.2.0",
   "description": "For use with React PropTypes. Will error on any prop not explicitly specified.",
-  "main": "build",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./sloppy": "./src/sloppy.js"
+  },
   "scripts": {
-    "prepublish": "safe-publish-latest && (not-in-publish || npm run build)",
-    "clean": "npm run clean:build && npm run clean:coverage",
-    "clean:build": "rimraf build",
-    "prebuild": "npm run clean:build",
-    "build": "babel src --out-dir build --source-maps",
     "lint": "eslint --ext js,jsx src test",
     "tape": "tape --require babel-register --require ./test/helpers/_failTestsOnErrors",
-    "clean:coverage": "rimraf coverage",
-    "precoverage": "NODE_ENV=test npm run build && npm run clean:coverage",
-    "coverage": "nyc --show-process-tree npm run --silent tests-only -- --",
-    "tests-only": "npm run tape './test/*.*'",
-    "pretest": "npm run pretravis && npm run lint",
-    "test": "npm run tests-only",
-    "react": "enzyme-adapter-react-install 16",
-    "pretravis": "npm run build && npm run react",
-    "travis": "npm run tests-only"
+    "test": "npm run tape './test/*.*'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/airbnb/prop-types-exact.git"
+    "url": "git+https://github.com/joelmoss/prop-types-exact.git"
   },
   "keywords": [
     "react",
@@ -54,17 +45,11 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "in-publish": "^2.0.0",
-    "nyc": "^10.3.2",
     "prop-types": "^15.6.1",
     "react": "^0.13 || ^0.14 || ^15 || ^16.0.0-alpha.12",
-    "rimraf": "^2.6.2",
-    "safe-publish-latest": "^1.1.1",
     "tape": "^4.9.1"
   },
   "dependencies": {
-    "has": "^1.0.3",
-    "object.assign": "^4.1.0",
-    "reflect.ownkeys": "^0.2.0"
+    "reflect.ownkeys": "^1.1.1"
   }
 }
